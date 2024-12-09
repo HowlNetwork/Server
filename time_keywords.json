@@ -1,0 +1,26 @@
+{
+  "time_keywords": {
+    "relative_time": [
+      "\\b(mai|sáng mai|ngày mai|đêm nay|đêm mai|tuần sau|hôm nay|vào lúc|vào|khi nào|giờ|lúc này|sắp tới|mới đây|vừa rồi|sắp đến|cuối tuần này|thứ [1-7])\\b",
+      "\\b(\\d{1,2} giờ|tối nay|vào)\\b"
+    ],
+    "month_time": [
+      "\\b(tháng [1-9]|tháng mười|tháng một|tháng hai|tháng ba|tháng tư|tháng năm|tháng sáu|tháng bảy|tháng tám|tháng chín|tháng mười một|tháng mười hai)\\b"
+    ],
+    "year_time": [
+      "\\b(năm nay|năm sau|năm trước)\\b"
+    ],
+    "day_time": [
+      "\\b(ngày [\\d]{1,2}|ngày \\d{1,2} tháng [\\d]{1,2}|ngày [\\d]{1,2} tháng [a-z]+|ngày [a-z]+)\\b"
+    ],
+    "date_format": [
+      "\\b([1-9]{1,2}/[1-9]{1,2}/\\d{4})\\b"
+    ],
+    "week_time": [
+      "\\b([a-zA-Z]+ tuần)\\b"
+    ],
+    "specific_times": [
+      "\\b(\\trưa hôm nay|sáng nay|trưa|chiều|tối|sáng|trưa chiều|chiều tối|đêm)\\b"
+    ]
+  }
+}
