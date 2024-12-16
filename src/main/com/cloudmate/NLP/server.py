@@ -34,10 +34,13 @@ def check_flood():
 
     try:
         current_time = int(current_time)
+        if current_time > 1e12:  # Timestamp likely in milliseconds
+            current_time //= 1000
     except ValueError:
         return jsonify({"error": "Invalid time format. Provide Unix timestamp."}), 400
 
     # Clean and normalize location input
+    default_location = location
     location = unidecode(location.strip().lower())
 
     # Filter comments by time range (last 2 hours)
@@ -63,8 +66,8 @@ def check_flood():
     # If no comments match
     if filtered_location.empty:
         return jsonify({
-            "location": location,
-            "time": datetime.utcfromtimestamp(current_time).strftime('%Y-%m-%d %H:%M:%S'),
+            "location": default_location,
+            "time": datetime.fromtimestamp(current_time).strftime('%Y-%m-%d %H:%M:%S'),
             "status": "No relevant comments found",
             "flood_related_comments": [],
             "resolved_flood_comments": [],
@@ -117,8 +120,8 @@ def check_flood():
         status = "Uncertain situation"
 
     return jsonify({
-        "location": location,
-        "time": datetime.utcfromtimestamp(current_time).strftime('%Y-%m-%d %H:%M:%S'),
+        "location": default_location,
+        "time": datetime.fromtimestamp(current_time).strftime('%Y-%m-%d %H:%M:%S'),
         "status": status,
         "flood_related_comments": flood_confirmed_comments['Comment'].tolist(),
         "resolved_flood_comments": resolved_flood_comments['Comment'].tolist(),
@@ -130,4 +133,4 @@ def check_flood():
     })
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=3000, debug=True)
